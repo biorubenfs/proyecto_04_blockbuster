@@ -8,7 +8,7 @@
 <img src="https://user-images.githubusercontent.com/65553496/114618816-183daa80-9caa-11eb-9596-96a0fa127ffc.png" width=100% height=100%>
 Some screenshots using Postman
 
-### Setup
+### Setup :wrench:
 
 Download or clone de repository. After that, run:
 
@@ -248,12 +248,12 @@ Admin users can see all list currently in the database thanks to this endpoint.
 
 </details>
 
-### Documentation
+### Documentation :notebook_with_decorative_cover:
 
 This project has documentation made with Swagger for some endpoints.
 ![swagger_screenshot](https://user-images.githubusercontent.com/65553496/117848961-20c2da00-b284-11eb-8409-4b6728e6b177.png)
 
-### Tools
+### Tools :nut_and_bolt:
 
 - [nodejs](https://nodejs.org/en/) - JavaScript runtime enviroment
 - [express](http://expressjs.com/) - nodejs backend framework
@@ -271,6 +271,6 @@ This project has documentation made with Swagger for some endpoints.
 - [robo3t](https://robomongo.org/) - GUI for mongodb
 - [compass](https://www.mongodb.com/products/compass) - GUI for mongodb
 
-### Author
+### Author :basketball:
 
 Rubén Fernández Santos

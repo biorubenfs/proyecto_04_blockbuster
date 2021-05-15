@@ -1,5 +1,7 @@
 import Order from '../models/order.model.js';
 import User from '../models/user.model.js';
+import Role from '../models/role.model.js';
+// The above import is neccessary for populate but i dont know why
 import displayGandalf from '../utils/displayGandalf.js';
 import Bcryp from 'bcrypt';
 import { request } from 'express';
@@ -9,7 +11,7 @@ export const userController = {
     listUsers: async (req, res) => {
 
         try {
-            const resUsers = await User.find();
+            const resUsers = await User.find().populate('roleId', 'role');
             res.json(resUsers);
         } catch (error) {
             res.status(400).send({ message: error.message });

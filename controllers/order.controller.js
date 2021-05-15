@@ -1,5 +1,6 @@
 import Order from '../models/order.model.js';
 import User from '../models/user.model.js';
+// import Movie from '../models/movie.model.js';
 
 // This controller groups all methods related to orders
 export const orderController = {
@@ -8,7 +9,7 @@ export const orderController = {
     listOrders: async (req, res) => {
 
         try {
-            const resOrders = await Order.find();
+            const resOrders = await Order.find().populate('movieId', 'title').populate('userId', 'username');
             res.json(resOrders);
         } catch (error) {
             res.status(400).send({ message: error.message });
