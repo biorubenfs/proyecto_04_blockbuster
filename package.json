@@ -4,9 +4,10 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "testDefault": "echo \"Error: no test specified\" && exit 1",
     "test": "mocha tests/movies.test.js --exit",
-    "start": "nodemon app.js 3000",
+    "test:jest": " jest -- ./tests_jest/*.suite.test.js",
+    "start_dev": " nodemon app.js 3000",
+    "start": "node app.js 3000",
     "seed": "node ./seed/roles.seeder.js && node ./seed/movies.seeder.js && node ./seed/users.seeder.js && node ./seed/orders.seeder.js"
   },
   "author": "Ruben Fernandez",
@@ -20,10 +21,12 @@
     "jsonwebtoken": "^8.5.1",
     "mocha": "^8.4.0",
     "mongoose": "^5.12.2",
+    "morgan": "^1.10.0",
     "swagger-jsdoc": "^7.0.0-rc.6",
     "swagger-ui-express": "^4.1.6"
   },
   "devDependencies": {
+    "jest": "^27.0.4",
     "nodemon": "^2.0.7",
     "supertest": "^6.1.3"
   }

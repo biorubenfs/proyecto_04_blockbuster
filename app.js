@@ -9,6 +9,7 @@ import signupRoutes from './routes/signup.routes.js';
 import authRoutes from './routes/auth.routes.js';
 
 import infoMiddleware from './middlewares/info.js';
+import morgan from 'morgan';
 
 import dotenv from 'dotenv';
 import checkUser from './middlewares/checkUser.js';
@@ -21,8 +22,11 @@ import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import swaggerOptions from './documentation/swagger.options.js'
 
+// Init dotenv
+dotenv.config();
+
 // App port
-const port = 3000;
+const port = process.env.PORT;
 
 // Initialize de swaggerjs doc AWAIT is mandatory.
 const specs = await swaggerJsdoc(swaggerOptions(port));
@@ -32,9 +36,6 @@ const app = express();
 
 // Swagger endpoint
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
-
-// Init dotenv
-dotenv.config();
 
 // Able to receive JSON on body request
 app.use(express.json());
@@ -47,8 +48,22 @@ const nameDB = process.env.NAME_DB;
 
 connectDatabase(urlDB, portDB, nameDB);
 
+// Tracking endpoints
+const morganActive = process.env.MORGAN_ACTIVE;
+const infoMiddlewareActive = process.env.INFO_MIDDLEWARE;
+
 // Simple middleware showing us some basic information
-app.use(infoMiddleware);
+if (infoMiddlewareActive === "enable") app.use(infoMiddleware);
+
+// Tracking endpoints using morgan middleware. This middleware does the same as the previous one
+if (morganActive === "enable") {
+    app.use(morgan((tokens, req, res) => [
+        new Date().toDateString(),
+        tokens.method(req, res),
+        tokens.url(req, res),
+        tokens.status(req, res)
+    ].join(' ')));
+}
 
 // Single signup endpoint. No middlewares needed.
 app.use('/signup', signupRoutes);
