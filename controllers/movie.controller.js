@@ -145,7 +145,7 @@ export const movieController = {
             if (Object.entries(updates).length === 0) {
                 res.status(400).json({ message: "Fields are empty" })
             } else {
-                const object = await Movie.findByIdAndUpdate(movieId, updates);
+                const object = await Movie.findByIdAndUpdate(movieId, updates, { new: true });
 
                 if (object) {
                     // res.status(200).json({ message: "Movie was updated successfully" });

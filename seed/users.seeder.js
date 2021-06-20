@@ -6,7 +6,6 @@ import dotenv from 'dotenv';
 
 import mongoose from 'mongoose';
 
-
 dotenv.config();
 
 const urlDB = process.env.URL_DB;
